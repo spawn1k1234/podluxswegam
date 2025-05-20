@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../../store/store';
-import { wishListHandler } from '../../../store/UserSlice';
-import { Product } from '../../../types/common';
-import LoadMore from '../../UI/LoadMore/LoadMore';
-import ProductCard from '../ProductCard/ProductCard';
-import classes from './ProductCardList.module.css';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { AppDispatch, RootState } from "../../../store/store";
+import { wishListHandler } from "../../../store/UserSlice";
+import { Product } from "../../../types/common";
+import LoadMore from "../../UI/LoadMore/LoadMore";
+import ProductCard from "../ProductCard/ProductCard";
+import classes from "./ProductCardList.module.css";
 
 interface IProductCardListProps {
   products: Product[];
@@ -60,7 +60,7 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
     setSortInDescendingOrder(false);
   }, [url]);
 
-  const handleWishlist = (id: Product['id']) => {
+  const handleWishlist = (id: Product["id"]) => {
     const isWished = wishlist.includes(id);
     dispatch(wishListHandler({ id, isWished }));
   };
@@ -81,11 +81,12 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
   };
 
   return (
-    <div className={classes['product-card-list']}>
-      <div className={classes['list-wrapper']}>
-        <div className={classes['sort-wrapper']}>
+    <div className={classes["product-card-list"]}>
+      <div className={classes["list-wrapper"]}>
+        <div className={classes["sort-wrapper"]}>
           <span className={classes.sort} onClick={toggleSorting}>
-            <strong>Сначала показывать:</strong> {sortInDescendingOrder ? 'подороже' : 'подешевле'}
+            <strong>Сначала показывать:</strong>{" "}
+            {sortInDescendingOrder ? "подороже" : "подешевле"}
           </span>
         </div>
 

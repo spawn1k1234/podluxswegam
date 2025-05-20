@@ -37,7 +37,10 @@
 }
 
 .list {
-  display: grid;
+  /* display: grid; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 40px;
   padding: 0;
   list-style: none;

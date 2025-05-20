@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background-color: #e8ebf0;
+  background-color: #222222;
+  color: white;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
@@ -11,7 +12,7 @@
 }
 
 .title {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-size: 18px;
   padding: 0 0 20px;
 }

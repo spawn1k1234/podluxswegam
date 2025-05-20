@@ -1,28 +1,149 @@
-import classes from './App.module.css';
-import { PATHS } from './constants/routes';
-import { useRoutes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store/store';
-import { fetchProducts } from './store/ProductSlice';
-import CategoryPage from './components/pages/showcasePages/CategoryPage/CategoryPage';
-import ProductsPage from './components/pages/adminPages/ProductsPage/ProductsPage';
-import SettingsPage from './components/pages/adminPages/SettingsPage/SettingsPage';
-import AdminPage from './components/pages/adminPages/AdminPage/AdminPage';
-import DiscountProductsPage from './components/pages/showcasePages/DiscountProductsPage/DiscountProductsPage';
-import ShowcasePage from './components/pages/showcasePages/ShowcasePage/ShowcasePage';
-import { getFromLocalStorage } from './store/UserSlice';
-import WishlistPage from './components/pages/showcasePages/WishlistPage/WishlistPage';
-import ProductPage from './components/pages/showcasePages/ProductPage/ProductPage';
-import Loader from './components/UI/Loader/Loader';
-import CartPage from './components/pages/showcasePages/CartPage/CartPage';
-import OrdersPage from './components/pages/adminPages/OrdersPage/OrdersPage';
-import CheckoutSuccessPage from './components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage';
-import NotFound from './components/pages/showcasePages/NotFound/NotFound';
+// import classes from "./App.module.css";
+// import { PATHS } from "./constants/routes";
+// import { useRoutes } from "react-router-dom";
+// import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { AppDispatch, RootState } from "./store/store";
+// import { fetchProducts } from "./store/ProductSlice";
+// import CategoryPage from "./components/pages/showcasePages/CategoryPage/CategoryPage";
+// import ProductsPage from "./components/pages/adminPages/ProductsPage/ProductsPage";
+// import SettingsPage from "./components/pages/adminPages/SettingsPage/SettingsPage";
+// import AdminPage from "./components/pages/adminPages/AdminPage/AdminPage";
+// import DiscountProductsPage from "./components/pages/showcasePages/DiscountProductsPage/DiscountProductsPage";
+// import ShowcasePage from "./components/pages/showcasePages/ShowcasePage/ShowcasePage";
+// import { getFromLocalStorage } from "./store/UserSlice";
+// import WishlistPage from "./components/pages/showcasePages/WishlistPage/WishlistPage";
+// import ProductPage from "./components/pages/showcasePages/ProductPage/ProductPage";
+// import Loader from "./components/UI/Loader/Loader";
+// import CartPage from "./components/pages/showcasePages/CartPage/CartPage";
+// import OrdersPage from "./components/pages/adminPages/OrdersPage/OrdersPage";
+// import CheckoutSuccessPage from "./components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage";
+// import NotFound from "./components/pages/showcasePages/NotFound/NotFound";
+
+// const App = () => {
+//   const dispatch = useDispatch<AppDispatch>();
+//   const { isLoading, products } = useSelector(
+//     (state: RootState) => state.product
+//   );
+//   const isDataLoaded = !isLoading && products.length > 0;
+
+//   const routes = useRoutes([
+//     {
+//       path: PATHS.showcase,
+//       element: <ShowcasePage />,
+//       children: [
+//         {
+//           path: "/",
+//           element: isDataLoaded ? <DiscountProductsPage /> : <Loader />,
+//         },
+//         {
+//           path: ":url",
+//           children: [
+//             {
+//               index: true,
+//               element: isDataLoaded ? <CategoryPage /> : <Loader />,
+//             },
+//             {
+//               path: ":id",
+//               element: isDataLoaded ? <ProductPage /> : <Loader />,
+//             },
+//           ],
+//         },
+//         {
+//           path: PATHS.wishlist,
+//           element: isDataLoaded ? <WishlistPage /> : <Loader />,
+//         },
+//         {
+//           path: PATHS.cart,
+//           element: isDataLoaded ? <CartPage /> : <Loader />,
+//         },
+//         {
+//           path: `${PATHS.cart}/${PATHS.success}`,
+//           element: <CheckoutSuccessPage />,
+//         },
+//       ],
+//     },
+//     {
+//       path: PATHS.admin,
+
+//       element: <AdminPage />,
+//       children: [
+//         {
+//           index: true,
+//           path: PATHS.orders,
+//           element: <OrdersPage />,
+//         },
+//         {
+//           path: PATHS.products,
+//           element: <ProductsPage />,
+//         },
+//         {
+//           path: PATHS.settings,
+//           element: <SettingsPage />,
+//         },
+//       ],
+//     },
+
+//     {
+//       path: "*",
+//       element: <NotFound />,
+//     },
+//   ]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         dispatch(getFromLocalStorage("wishlist"));
+//         dispatch(getFromLocalStorage("cart"));
+//         dispatch(fetchProducts());
+//       } catch (error) {
+//         console.log("Fetch error App.tsx:", error);
+//       }
+//     };
+
+//     fetchData();
+//   }, [dispatch]);
+
+//   return <div className={classes.app}>{routes}</div>;
+// };
+
+// export default App;
+
+import classes from "./App.module.css";
+import { PATHS } from "./constants/routes";
+import { useRoutes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./store/store";
+import { fetchProducts } from "./store/ProductSlice";
+import { getFromLocalStorage } from "./store/UserSlice";
+
+// Showcase pages
+import ShowcasePage from "./components/pages/showcasePages/ShowcasePage/ShowcasePage";
+import DiscountProductsPage from "./components/pages/showcasePages/DiscountProductsPage/DiscountProductsPage";
+import CategoryPage from "./components/pages/showcasePages/CategoryPage/CategoryPage";
+import ProductPage from "./components/pages/showcasePages/ProductPage/ProductPage";
+import WishlistPage from "./components/pages/showcasePages/WishlistPage/WishlistPage";
+import CartPage from "./components/pages/showcasePages/CartPage/CartPage";
+import CheckoutSuccessPage from "./components/pages/showcasePages/CheckoutSuccessPage/CheckoutSuccessPage";
+import NotFound from "./components/pages/showcasePages/NotFound/NotFound";
+import PrivatePage from "./components/pages/showcasePages/PrivatePage/PrivatePage";
+import ProfilePage from "./components/pages/showcasePages/ProfilePage/ProfilePage";
+
+// Admin pages
+import AdminPage from "./components/pages/adminPages/AdminPage/AdminPage";
+import OrdersPage from "./components/pages/adminPages/OrdersPage/OrdersPage";
+import ProductsPage from "./components/pages/adminPages/ProductsPage/ProductsPage";
+import SettingsPage from "./components/pages/adminPages/SettingsPage/SettingsPage";
+import AdminPasswordPage from "./components/pages/adminPages/AdminPage/AdminPasswordPage";
+
+import Loader from "./components/UI/Loader/Loader";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, products } = useSelector((state: RootState) => state.product);
+  const { isLoading, products } = useSelector(
+    (state: RootState) => state.product
+  );
   const isDataLoaded = !isLoading && products.length > 0;
 
   const routes = useRoutes([
@@ -31,72 +152,76 @@ const App = () => {
       element: <ShowcasePage />,
       children: [
         {
-          path: '/',
+          index: true,
           element: isDataLoaded ? <DiscountProductsPage /> : <Loader />,
         },
         {
-          path: ':url',
+          path: ":url",
           children: [
             {
               index: true,
               element: isDataLoaded ? <CategoryPage /> : <Loader />,
             },
             {
-              path: ':id',
+              path: ":id",
               element: isDataLoaded ? <ProductPage /> : <Loader />,
             },
           ],
         },
-        { path: PATHS.wishlist, element: isDataLoaded ? <WishlistPage /> : <Loader /> },
-        {
-          path: PATHS.cart,
-          element: isDataLoaded ? <CartPage /> : <Loader />,
-        },
-        {
-          path: `${PATHS.cart}/${PATHS.success}`,
-          element: <CheckoutSuccessPage />,
-        },
       ],
     },
     {
+      path: PATHS.wishlist,
+      element: isDataLoaded ? <WishlistPage /> : <Loader />,
+    },
+    {
+      path: PATHS.cart,
+      element: isDataLoaded ? <CartPage /> : <Loader />,
+    },
+    {
+      path: PATHS.private,
+      element: <PrivatePage />,
+    },
+    {
+      path: PATHS.profile, // Убедитесь, что PATHS.profile существует в ваших константах
+      element: <ProfilePage />,
+    },
+    {
+      path: PATHS.success,
+      element: <CheckoutSuccessPage />,
+    },
+    {
+      path: `${PATHS.admin}/auth`,
+      element: <AdminPasswordPage />,
+    },
+    {
       path: PATHS.admin,
-
       element: <AdminPage />,
       children: [
         {
-          index: true,
-          path: PATHS.orders,
+          path: PATHS.adminOrders.replace(`${PATHS.admin}/`, ""),
           element: <OrdersPage />,
         },
         {
-          path: PATHS.products,
+          path: PATHS.adminProducts.replace(`${PATHS.admin}/`, ""),
           element: <ProductsPage />,
         },
         {
-          path: PATHS.settings,
+          path: PATHS.adminSettings.replace(`${PATHS.admin}/`, ""),
           element: <SettingsPage />,
         },
       ],
     },
-
     {
-      path: '*',
+      path: "*",
       element: <NotFound />,
     },
   ]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(getFromLocalStorage('wishlist'));
-        dispatch(getFromLocalStorage('cart'));
-        dispatch(fetchProducts());
-      } catch (error) {
-        console.log('Fetch error App.tsx:', error);
-      }
-    };
-
-    fetchData();
+    dispatch(getFromLocalStorage("wishlist"));
+    dispatch(getFromLocalStorage("cart"));
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return <div className={classes.app}>{routes}</div>;

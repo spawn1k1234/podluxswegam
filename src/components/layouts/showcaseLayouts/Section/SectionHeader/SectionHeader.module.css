@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background-color: rgb(255 255 255 / 8%);
+  backdrop-filter: blur(5px); /* размывает только фон */
 }
 
 .section-header-title {
-  font-family: 'Nunito';
-  font-size: 38px;
+  font-family: "Nunito";
+  font-size: 15px;
+  padding: 14px;
   margin: 0;
+  color: rgb(226, 226, 226);
 }
 
 .section-header-description {

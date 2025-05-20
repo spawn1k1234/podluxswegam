@@ -33,12 +33,12 @@
 
 .container input:checked ~ .checkmark {
   border: none;
-  outline-color: #fc0;
-  background-color: #fc0;
+  outline-color: rgb(255, 220, 220);
+  background-color: rgb(0, 0, 0);
 }
 
 .checkmark:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
 }
@@ -52,7 +52,7 @@
   top: 2px;
   width: 3px;
   height: 8px;
-  border: solid rgba(0, 0, 0, 0.6);
+  border: solid rgb(255, 255, 255);
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }

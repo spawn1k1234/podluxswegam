@@ -1,26 +1,29 @@
-.menu {
+/* .menu {
   position: relative;
 }
 
 .button {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   display: flex;
   gap: 10px;
   align-items: center;
   padding: 8px 12px;
   border-radius: 4px;
   border: none;
-  background-color: #fc0;
+  background-color: rgb(0, 0, 0);
   font-size: 16px;
   cursor: pointer;
   transition: opacity 200ms linear;
-  color: #222222;
-  width: 100%;
+  color: #ffffff;
+  width: 70%;
   justify-content: center;
+  border: solid 2px white;
 }
 
 .button:hover {
   opacity: 0.7;
+  background-color: white;
+  color: black;
   transition: opacity 200ms linear;
 }
 
@@ -78,4 +81,154 @@
   .nav {
     width: 280px;
   }
+} */
+
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  font-family: "Nunito";
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 200ms linear;
+  color: #ffffff;
+  width: 100%;
+  align-items: center;
+  border: solid 2px #131313;
+  flex-direction: row-reverse;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 70%;
+  max-width: 300px;
+  background-color: #000;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  border-right: 1px solid #2b2b2b;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav.open {
+  transform: translateX(0);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 101;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeIcon {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.closeButton:hover .closeIcon {
+  transform: scale(1);
+}
+
+.closeLine1,
+.closeLine2 {
+  stroke: #fff;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover .closeLine1 {
+  stroke: #ccc;
+}
+
+.closeButton:hover .closeLine2 {
+  stroke: #ccc;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  padding: 70px 0 0;
+  margin: 0;
+}
+
+.menu-list-item {
+  border-bottom: 1px solid #2b2b2b;
+}
+
+.link {
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  text-decoration: none;
+  transition: all 150ms linear;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.link:hover {
+  background-color: #2b2b2b;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: auto;
+  }
+}
+
+/* SVG Burger animation */
+:global(.ham) {
+  cursor: pointer;
+  transition: transform 400ms;
+  user-select: none;
+}
+:global(.hamRotate.active) {
+  transform: rotate(45deg);
+}
+:global(.line) {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+}
+:global(.ham1 .top) {
+  stroke-dasharray: 40 139;
+}
+:global(.ham1 .bottom) {
+  stroke-dasharray: 40 180;
+}
+:global(.ham1.active .top) {
+  stroke-dashoffset: -98px;
+}
+:global(.ham1.active .bottom) {
+  stroke-dashoffset: -138px;
 }

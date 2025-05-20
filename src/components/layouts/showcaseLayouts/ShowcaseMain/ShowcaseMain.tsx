@@ -1,4 +1,4 @@
-import classes from './ShowcaseMain.module.css';
+import classes from "./ShowcaseMain.module.css";
 
 interface IShowcaseMainProps {
   children: JSX.Element;
