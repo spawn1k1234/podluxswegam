@@ -102,3 +102,10 @@ npm run start
 Если все прошло успешно, проект будет запущен на `http://localhost:3000`
 
 нужно добавить сохранения в базу данх настройки !!!!!!!!!
+
+PS D:\ajtizona\Telegramshop\e-commerce-react-app> git add .
+PS D:\ajtizona\Telegramshop\e-commerce-react-app> git commit -m "Fix1"  
+[main be56af8] Fix1
+1 file changed, 49 insertions(+), 2 deletions(-)
+PS D:\ajtizona\Telegramshop\e-commerce-react-app> git push
+Enumerating objects: 15, done.

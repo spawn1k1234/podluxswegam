@@ -192,7 +192,7 @@ const App = () => {
     },
     {
       path: `${PATHS.admin}/auth`,
-      element: <AdminPasswordPage />,
+      element: <AdminPasswordPage />, ///admin/orders
     },
     {
       path: PATHS.admin,
