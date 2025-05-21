@@ -111,8 +111,26 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
   return (
     <li className={classes["product-card"]}>
-      <Link to={linkPath} className={classes["image-wrapper"]}>
+      {/* <Link to={linkPath} className={classes["image-wrapper"]}>
         <img src={image} alt={name} className={classes.image} />
+
+        <div className={classes["wishlist-btn"]}>
+          <IconButton onClick={onWishlistClick}>
+            <FavoriteIcon filled={isAddedToWishlist} />
+          </IconButton>
+        </div>
+        <div className={classes["discount-chip"]}>
+          {discount && (
+            <Chip text={"-" + discount.percent + "%"} mode={"attention"} />
+          )}
+        </div>
+      </Link> */}
+      <Link to={linkPath} className={classes["image-wrapper"]}>
+        <img
+          src={image.split(",")[0].trim()}
+          alt={name}
+          className={classes.image}
+        />
 
         <div className={classes["wishlist-btn"]}>
           <IconButton onClick={onWishlistClick}>

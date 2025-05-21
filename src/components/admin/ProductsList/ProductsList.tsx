@@ -311,7 +311,12 @@ const ProductsList: React.FC<IProductsListProps> = ({
                 return (
                   <tr key={id}>
                     <td className={classes.cell}>
-                      <img className={classes.image} src={image} alt={name} />
+                      {/* <img className={classes.image} src={image} alt={name} /> */}
+                      <img
+                        src={image.split(",")[0].trim()}
+                        alt={name}
+                        className={classes.image}
+                      />
                     </td>
                     <td className={classes["product-name-cell"]}>
                       {name}

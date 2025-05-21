@@ -9,6 +9,7 @@ import SectionHeader from "../../../layouts/showcaseLayouts/Section/SectionHeade
 import Filter from "../../../showcase/Filter/Filter";
 import ProductCardList from "../../../showcase/ProductCardList/ProductCardList";
 import Placeholder from "../../../UI/Placeholder/Placeholder";
+import { color } from "framer-motion";
 
 interface IDiscountProductsPageProps {}
 
@@ -25,11 +26,12 @@ const DiscountProductsPage: React.FC<IDiscountProductsPageProps> = () => {
   return (
     <Section>
       <>
-        <SectionHeader
+        {/* <SectionHeader
           title={
             "PodluxSwegam – интернет-магазин одежды, сотрудничающий с проверенными поставщиками из Китая. Мы предлагаем стильную и качественную продукцию, выполненную по мотивам оригинальных брендов. Трендовые вещи по доступным ценам – всё в одном месте."
           }
-        />
+        /> */}
+        <SectionHeader title={"Дропы по нашим ценам."} />
         <SectionBody>
           <SectionBodyGrid>
             <>

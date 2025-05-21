@@ -1,4 +1,4 @@
-import classes from './Input.module.css';
+import classes from "./Input.module.css";
 
 interface IInputProps {
   label: string;
@@ -7,9 +7,11 @@ interface IInputProps {
   type: string;
   required?: boolean;
   placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   value: string;
-  isDisabled?: boolean
+  isDisabled?: boolean;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -21,7 +23,7 @@ const Input: React.FC<IInputProps> = ({
   placeholder,
   onChange,
   value,
-  isDisabled
+  isDisabled,
 }) => {
   return (
     <div className={classes.container}>

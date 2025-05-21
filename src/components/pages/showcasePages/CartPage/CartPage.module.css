@@ -1,10 +1,13 @@
 .cart-page-body {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .title {
-    font-family: 'Nunito';
-    font-size: 28px;
+  font-family: "Nunito";
+  font-size: 28px;
+  color: white;
+  background-color: rgb(23, 23, 23);
+  padding: 10px;
 }

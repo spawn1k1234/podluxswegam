@@ -11,7 +11,7 @@
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 15px;
   animation: fade 200ms linear;
   z-index: 5;
   box-sizing: border-box;
@@ -42,18 +42,74 @@
 }
 
 .info {
-  color: #222222;
-  background-color: #fcf7eb;
+  color: #ffffff;
+  background-color: rgba(81, 81, 81, 0.3); /* Полупрозрачный фон */
+  backdrop-filter: blur(8px); /* Блюр заднего фона */
+  -webkit-backdrop-filter: blur(10px); /* Для Safari */
   box-shadow: 0px 6px 12px rgba(130, 82, 208, 0.16);
+  mix-blend-mode: difference;
 }
 
+/* .success {
+  background-color: #161616;
+  box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.16);
+} */
 .success {
-  background-color: #5ec343;
-  box-shadow: 0px 6px 12px rgba(0, 176, 49, 0.16);
+  background-color: rgba(81, 81, 81, 0.3); /* Полупрозрачный фон */
+  backdrop-filter: blur(8px); /* Блюр заднего фона */
+  -webkit-backdrop-filter: blur(10px); /* Для Safari */
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  font-family: "Arial", sans-serif;
+  animation: punchFade 2.2s cubic-bezier(0.25, 1.5, 0.5, 1) forwards;
+  z-index: 1000;
+
+  mix-blend-mode: difference;
+}
+
+@keyframes punchFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%) scale(1);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  35% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  65% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80%) scale(1);
+  }
 }
 
 .warning {
-  background-color: #ffa801;
+  background-color: #837e77;
   box-shadow: 0px 6px 12px rgba(245, 152, 33, 0.16);
 }
 
