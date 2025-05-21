@@ -46,4 +46,14 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    let scrollTimer;
+    window.addEventListener("scroll", function () {
+      document.body.classList.add("scrolling");
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        document.body.classList.remove("scrolling");
+      }, 200);
+    });
+  </script>
 </html>

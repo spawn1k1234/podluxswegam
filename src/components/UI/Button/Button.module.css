@@ -1,5 +1,5 @@
 .button {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 15px;
   color: #222222;
   cursor: pointer;
@@ -17,7 +17,7 @@
 }
 
 .button:disabled::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -34,7 +34,8 @@
 
 .primary {
   color: #fff;
-  background-color: #5ec343;
+  background-color: #000000;
+  border: solid 2px white;
 }
 
 .secondary {

@@ -47,7 +47,6 @@
   backdrop-filter: blur(8px); /* Блюр заднего фона */
   -webkit-backdrop-filter: blur(10px); /* Для Safari */
   box-shadow: 0px 6px 12px rgba(130, 82, 208, 0.16);
-  mix-blend-mode: difference;
 }
 
 /* .success {
@@ -70,8 +69,6 @@
   font-family: "Arial", sans-serif;
   animation: punchFade 2.2s cubic-bezier(0.25, 1.5, 0.5, 1) forwards;
   z-index: 1000;
-
-  mix-blend-mode: difference;
 }
 
 @keyframes punchFade {
