@@ -116,6 +116,44 @@ const ProductCardList: React.FC<IProductCardListProps> = ({ products }) => {
           itemsLimit={PRODUCT_LIST_LIMIT}
         />
       )}
+      <footer className={classes.footer}>
+        <div className={classes.footerContent}>
+          <div className={classes.footerSection}>
+            <h3 className={classes.footerTitle}>PodLuxSwegam</h3>
+            <p className={classes.footerText}>
+              Премиальные товары с доставкой по всему миру
+            </p>
+          </div>
+
+          <div className={classes.footerSection}>
+            <h4 className={classes.footerSubtitle}>Контакты</h4>
+            <ul className={classes.footerList}>
+              <li>Email: info@podluxswegam.com</li>
+              <li>Телефон: +123 456 7890</li>
+              <li>Telegram: @podluxswegam_support</li>
+            </ul>
+          </div>
+
+          <div className={classes.footerSection}>
+            <h4 className={classes.footerSubtitle}>Соцсети</h4>
+            <div className={classes.socialIcons}>
+              <a href="#" className={classes.socialLink}>
+                Instagram
+              </a>
+              <a href="#" className={classes.socialLink}>
+                Telegram
+              </a>
+              <a href="#" className={classes.socialLink}>
+                Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className={classes.footerBottom}>
+          <p>© {new Date().getFullYear()} PodLuxSwegam. Все права защищены.</p>
+        </div>
+      </footer>
     </div>
   );
 };

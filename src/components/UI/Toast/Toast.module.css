@@ -46,7 +46,6 @@
   background-color: rgba(81, 81, 81, 0.3); /* Полупрозрачный фон */
   backdrop-filter: blur(8px); /* Блюр заднего фона */
   -webkit-backdrop-filter: blur(10px); /* Для Safari */
-  box-shadow: 0px 6px 12px rgba(130, 82, 208, 0.16);
 }
 
 /* .success {
@@ -60,7 +59,6 @@
   color: white;
   padding: 1rem 2rem;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
   position: fixed;
   top: 5%;
   left: 50%;
