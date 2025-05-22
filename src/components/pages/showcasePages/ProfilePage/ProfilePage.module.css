@@ -102,7 +102,6 @@
   height: 120px;
   position: relative;
   margin-bottom: 2rem;
-  border: 1px solid #fff;
   overflow: hidden;
 }
 
@@ -111,6 +110,7 @@
   height: 100%;
   object-fit: cover;
   filter: grayscale(30%);
+  border-radius: 50%;
 }
 
 .avatarOverlay {
@@ -165,6 +165,15 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
 .collabContent {
@@ -202,46 +211,6 @@
   text-decoration: none;
 }
 
-.menuButton {
-  background: none;
-  border: 1px solid #333;
-  color: #fff;
-  padding: 0.8rem;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.menu {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid #333;
-}
-
-.menuItem {
-  background: none;
-  border: none;
-  color: #fff;
-  padding: 1rem 0;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border-bottom: 1px solid #333;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.menuItem:hover {
-  background-color: #111;
-}
-
 .loading {
   text-align: center;
   text-transform: uppercase;
@@ -259,6 +228,7 @@
   padding-top: 2rem;
   border-top: 1px solid #333;
   line-height: 1.6;
+  margin-bottom: 100px;
 }
 
 @media (max-width: 768px) {

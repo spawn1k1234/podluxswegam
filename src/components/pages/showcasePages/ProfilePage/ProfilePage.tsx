@@ -58,7 +58,6 @@ type User = {
 
 const PrivatePage = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCollabOpen, setIsCollabOpen] = useState(false);
 
   useEffect(() => {
@@ -92,10 +91,15 @@ const PrivatePage = () => {
   };
 
   const collabVariants = {
-    hidden: { height: 0, opacity: 0 },
+    hidden: {
+      height: 0,
+      opacity: 0,
+      marginBottom: 0,
+    },
     visible: {
       height: "auto",
       opacity: 1,
+      marginBottom: "1rem",
       transition: {
         duration: 0.4,
         ease: [0.04, 0.62, 0.23, 0.98],
@@ -104,11 +108,17 @@ const PrivatePage = () => {
     exit: {
       height: 0,
       opacity: 0,
+      marginBottom: 0,
       transition: {
         duration: 0.3,
         ease: [0.04, 0.62, 0.23, 0.98],
       },
     },
+  };
+
+  const arrowVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: 180 },
   };
 
   return (
@@ -119,7 +129,7 @@ const PrivatePage = () => {
       variants={containerVariants}
     >
       <motion.h1 className={classes.title} variants={itemVariants}>
-        {user?.first_name ? `${user.first_name}'S SPACE` : "PRIVATE SPACE"}
+        {user?.first_name ? `${user.first_name}` : ""}
       </motion.h1>
 
       {user ? (
@@ -157,7 +167,15 @@ const PrivatePage = () => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              {isCollabOpen ? "▲ COLLABORATION" : "▼ COLLABORATION"}
+              COLLABORATION
+              <motion.span
+                className={classes.arrow}
+                variants={arrowVariants}
+                animate={isCollabOpen ? "open" : "closed"}
+                transition={{ duration: 0.3 }}
+              >
+                ▲
+              </motion.span>
             </motion.button>
 
             <AnimatePresence>
@@ -170,12 +188,12 @@ const PrivatePage = () => {
                   exit="exit"
                 >
                   <p className={classes.collabText}>
-                    ПО ВОПРОСАМ ДЕЛОВОГО СОТРУДНИЧЕСТВА И ОПТОВЫХ ПРОДАЖ,
-                    ОБРАЩАЙТЕСЬ К НАШЕМУ МЕНЕДЖЕРУ @podluxswegam
+                    FOR BUSINESS COLLABORATION AND WHOLESALE INQUIRIES, PLEASE
+                    CONTACT OUR MANAGER @podluxswegam
                   </p>
                   <p className={classes.collabText}>
-                    МЫ ПРЕДЛАГАЕМ ВОЗМОЖНОСТИ ДРОПШИППИНГА И ОПТОВОЙ ПРОДАЖИ ДЛЯ
-                    ИЗБРАННЫХ МАГАЗИНОВ.
+                    WE OFFER DROPSHIPPING AND WHOLESALE OPPORTUNITIES FOR SELECT
+                    STORES.
                   </p>
                 </motion.div>
               )}
@@ -224,38 +242,10 @@ const PrivatePage = () => {
             </motion.a>
           </motion.div>
 
-          <motion.button
-            className={classes.menuButton}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileHover={{ backgroundColor: "#111" }}
-          >
-            {isMenuOpen ? "▲ CLOSE" : "▼ MENU"}
-          </motion.button>
-
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                className={classes.menu}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <a href="#" className={classes.menuItem}>
-                  ORDER HISTORY
-                </a>
-                <a href="#" className={classes.menuItem}>
-                  FAVORITES
-                </a>
-                <a href="#" className={classes.menuItem}>
-                  SETTINGS
-                </a>
-                <a href="#" className={classes.menuItem}>
-                  LOGOUT
-                </a>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <motion.div className={classes.footer} variants={itemVariants}>
+            <p>PODLUXSWEGAM</p>
+            <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED</p>
+          </motion.div>
         </motion.div>
       ) : (
         <motion.p
@@ -266,11 +256,6 @@ const PrivatePage = () => {
           LOADING PROFILE...
         </motion.p>
       )}
-
-      <motion.div className={classes.footer} variants={itemVariants}>
-        <p>PODLUXSWEGAM</p>
-        <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED</p>
-      </motion.div>
       <ShowcaseFooter />
     </motion.div>
   );
