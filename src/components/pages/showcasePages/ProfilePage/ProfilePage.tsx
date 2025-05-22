@@ -188,12 +188,12 @@ const PrivatePage = () => {
                   exit="exit"
                 >
                   <p className={classes.collabText}>
-                    FOR BUSINESS COLLABORATION AND WHOLESALE INQUIRIES, PLEASE
-                    CONTACT OUR MANAGER @podluxswegam
+                    ПО ВОПРОСАМ ДЕЛОВОГО СОТРУДНИЧЕСТВА И ОПТОВЫХ ПРОДАЖ,
+                    ОБРАЩАЙТЕСЬ К НАШЕМУ МЕНЕДЖЕРУ <span>@podluxswegam</span>
                   </p>
                   <p className={classes.collabText}>
-                    WE OFFER DROPSHIPPING AND WHOLESALE OPPORTUNITIES FOR SELECT
-                    STORES.
+                    МЫ ПРЕДЛАГАЕМ ВОЗМОЖНОСТИ ДРОПШИППИНГА И ОПТОВОЙ ПРОДАЖИ ДЛЯ
+                    ИЗБРАННЫХ МАГАЗИНОВ.
                   </p>
                 </motion.div>
               )}
@@ -210,7 +210,7 @@ const PrivatePage = () => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              TELEGRAM CHANNEL
+              ТЕЛЕГРАММ КАНАЛ
             </motion.a>
 
             <motion.a
