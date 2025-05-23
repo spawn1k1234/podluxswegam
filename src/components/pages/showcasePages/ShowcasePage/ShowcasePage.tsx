@@ -27,7 +27,6 @@ import ShowcaseFooter from "../../../layouts/showcaseLayouts/ShowcaseFooter/Show
 import ShowcaseHeader from "../../../layouts/showcaseLayouts/ShowcaseHeader/ShowcaseHeader";
 import ShowcaseMain from "../../../layouts/showcaseLayouts/ShowcaseMain/ShowcaseMain";
 import classes from "./ShowcasePage.module.css";
-import video from "../../../../assets/podluxsweglog.mp4";
 
 const ShowcasePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,9 +52,10 @@ const ShowcasePage: React.FC = () => {
         <video
           ref={videoRef}
           className={classes.video}
-          src={video}
+          src="/video/podluxsweglog.mp4" // путь к видео в папке public
           autoPlay
           muted
+          playsInline
         />
       </div>
     );
