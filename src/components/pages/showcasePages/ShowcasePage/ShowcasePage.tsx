@@ -33,10 +33,23 @@ const ShowcasePage: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Проверяем, показывалось ли видео ранее
+    const videoShown = localStorage.getItem("videoShown");
+
+    // Если видео уже было показано, не показываем его снова
+    if (videoShown) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Если видео еще не было показано, ставим флаг в localStorage
     const videoEl = videoRef.current;
     if (videoEl) {
       videoEl.play();
-      const onEnd = () => setIsLoading(false);
+      const onEnd = () => {
+        setIsLoading(false);
+        localStorage.setItem("videoShown", "true"); // Сохраняем флаг, что видео было показано
+      };
       videoEl.addEventListener("ended", onEnd);
       return () => videoEl.removeEventListener("ended", onEnd);
     } else {
@@ -52,7 +65,7 @@ const ShowcasePage: React.FC = () => {
         <video
           ref={videoRef}
           className={classes.video}
-          src="/video/podluxsweglog.mp4" // путь к видео в папке public
+          src="/video/podluxsweglog.mp4"
           autoPlay
           muted
           playsInline
