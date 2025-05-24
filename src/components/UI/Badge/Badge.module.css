@@ -1,18 +1,16 @@
 .link {
   text-decoration: none;
-  opacity: 0;
-  animation: fadeInSlideUp 0.3s ease-out 0.3s forwards;
+  /* opacity: 0;
+  animation: fadeInSlideUp 0.9s ease-out 0.9s forwards; */
 }
-@keyframes fadeInSlideUp {
+/* @keyframes fadeInSlideUp {
   0% {
     opacity: 0;
-    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
   }
-}
+} */
 .badge {
   display: flex;
   flex-direction: column;

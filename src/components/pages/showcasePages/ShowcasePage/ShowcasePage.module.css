@@ -22,7 +22,7 @@
   display: grid;
   grid-template-rows: fit-content(230px) auto min-content;
   min-height: 100vh;
-  gap: 30px;
+  gap: 25px;
   margin: 0 auto;
 }
 

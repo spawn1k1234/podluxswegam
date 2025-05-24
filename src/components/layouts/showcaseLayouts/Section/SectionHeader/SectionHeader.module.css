@@ -53,7 +53,7 @@
 } */
 .section-header-description {
   opacity: 0;
-  animation: fadeIn 2s forwards;
+  animation: fadeIn 4s forwards;
   color: white;
   font-size: 13px;
   font-family: "Nunito";

@@ -89,7 +89,7 @@
   justify-content: center;
 }
 
-.button {
+/* .button {
   font-family: "Nunito";
   display: flex;
   gap: 10px;
@@ -106,21 +106,35 @@
   align-items: center;
   border: solid 2px #131313;
   flex-direction: row-reverse;
-
-  opacity: 0;
-  animation: fadeInSlideUp 0.3s ease-out 0.3s forwards;
+} */
+.button {
+  font-family: "Nunito";
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 2px solid #00000000;
+  background-color: rgba(0, 0, 0, 0.021);
+  font-size: 16px;
+  cursor: pointer;
+  color: #ffffff;
+  width: 100%;
+  align-items: center;
+  flex-direction: row-reverse;
+  opacity: 0; /* Изначально кнопка невидимая */
+  animation: fadeIn 1s ease-in-out forwards; /* Анимация затемнения */
 }
-@keyframes fadeInSlideUp {
+
+/* Анимация затемнения */
+@keyframes fadeIn {
   0% {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0; /* Начинаем с невидимости */
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Кнопка становится полностью видимой */
   }
 }
-
 .nav {
   position: fixed;
   top: 0;
