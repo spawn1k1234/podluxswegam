@@ -22,7 +22,7 @@
   display: grid;
   grid-template-rows: fit-content(230px) auto min-content;
   min-height: 100vh;
-  gap: 40px;
+  gap: 30px;
   margin: 0 auto;
 }
 
@@ -45,5 +45,5 @@
   max-width: 100%;
   max-height: 100vh; /* Ограничение максимальной высоты, чтобы видео не выходило за экран */
   object-fit: contain; /* Сохранение пропорций видео */
-  transform: scale(0.6); /* Уменьшение видео до 70% */
+  transform: scale(0.6);
 }
