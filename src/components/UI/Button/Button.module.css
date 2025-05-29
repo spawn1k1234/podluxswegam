@@ -7,10 +7,10 @@
   background: transparent;
   padding: 7px 17px;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 10px;
+  width: 50%;
   position: relative;
 }
-
 .button:hover:not(:disabled) {
   transition: opacity 0.3s ease-out;
   opacity: 0.5;
@@ -33,9 +33,9 @@
 }
 
 .primary {
-  color: #fff;
-  background-color: #000000;
-  border: solid 2px white;
+  color: #000000;
+  background-color: #00000000;
+  border: solid 2px rgb(0, 0, 0);
 }
 
 .secondary {
