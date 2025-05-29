@@ -110,6 +110,15 @@ const PrivatePage = () => {
               variants={sectionVariants}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={classes.videoBackground}
+              >
+                <source src="/video/video2.mp4" type="video/mp4" />
+              </video>
               <p>
                 Мы делаем процесс покупки максимально простым и удобным для вас.
                 Сначала вы выбираете интересующий товар и оставляете заявку на

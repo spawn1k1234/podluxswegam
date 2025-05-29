@@ -58,15 +58,41 @@
 }
 
 /* Новый класс для разбивки больших текстов */
-.textBlock {
+/* .textBlock {
   background-color: #151515;
   border-left: 4px solid #6a4f4c;
   padding: 1rem 1.5rem;
   margin-top: 1rem;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+} */
+.textBlock {
+  position: relative; /* Для позиционирования видео */
+  border-left: 4px solid #6a4f4c;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* Чтобы видео не выходило за границы */
 }
 
+.videoBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  filter: blur(4px);
+  height: 100%;
+  object-fit: cover; /* Видео заполняет весь блок */
+  z-index: 0; /* Видео под текстом */
+  opacity: 0.3; /* Прозрачность (можно регулировать) */
+}
+
+.textContent {
+  position: relative; /* Чтобы текст был поверх видео */
+  z-index: 1; /* Текст выше видео */
+  color: white; /* Белый текст для контраста (можно изменить) */
+}
 .textBlock p {
   font-size: 1rem;
   line-height: 1.7;
