@@ -330,12 +330,14 @@ import CartForm from "../../../showcase/CartForm/CartForm";
 import Placeholder from "../../../UI/Placeholder/Placeholder";
 import classes from "./CartPage.module.css";
 
-// Инициализация начальных значений для формы
 const INIT_INPUT = {
   name: "",
   phone: "",
   address: "",
+  email: "",
 };
+
+const BOT_TOKEN = "7651886787:AAEPR_EKo3W4mPpVr1hHcfUH_a3CMd90G64";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -379,11 +381,14 @@ const CartPage: React.FC = () => {
 
   const summaryProps = { price, weight, profit, quantity };
 
-  const handleWishlist = (params: {
+  const handleWishlist = ({
+    id,
+    isWished,
+  }: {
     id: CartItem["productId"];
     isWished: boolean;
   }) => {
-    dispatch(wishListHandler(params));
+    dispatch(wishListHandler({ id, isWished }));
   };
 
   const handleRemoveCartItem = (id: CartItem["productId"]) => {
@@ -391,37 +396,53 @@ const CartPage: React.FC = () => {
     dispatch(setToLocalStorage("cart"));
   };
 
-  // Функция отправки данных о заказе в Telegram
-  async function sendOrderToTelegram(orderDetails: any) {
+  async function sendOrderToTelegram(telegramUserId: string, orderData: any) {
     try {
-      console.log("Sending order details to Telegram:", orderDetails); // Логируем данные заказа
+      // Формируем сообщение с информацией о заказе
+      let message = `Привет! Ты заказал в нашем магазине:\n\n`;
 
-      const response = await fetch("/api/send-telegram", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderDetails),
+      cartProducts.forEach((item) => {
+        message += `- ${item.name} (${item.quantity} шт.) - ${item.totalPrice} ₴\n`;
       });
 
-      const data = await response.json();
-      console.log("Telegram API response:", data); // Логируем ответ API
+      message += `\nОбщая сумма: ${price} ₴\n`;
+      message += `Общий вес: ${weight} кг\n`;
+      message += `\nКонтактные данные:\n`;
+      message += `Имя: ${input.name}\n`;
+      message += `Телефон: ${input.phone}\n`;
+      message += `Адрес: ${input.address}\n`;
+      message += `Email: ${input.email || "не указан"}\n`;
 
-      if (!data.message) {
-        throw new Error("Ошибка при отправке сообщения");
+      // Отправляем сообщение через Telegram Bot API
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: telegramUserId,
+            text: message,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Ошибка при отправке сообщения через бота");
       }
     } catch (error) {
-      console.error("Ошибка при отправке данных в Telegram:", error);
+      console.error("Ошибка при отправке заказа в Telegram:", error);
     }
   }
 
-  // Основная функция обработки заказа
   async function handleSubmit() {
+    // Получаем Telegram user ID из параметров Mini App
+    const tg = window.Telegram?.WebApp;
+    const telegramUserId = tg?.initDataUnsafe?.user?.id;
+
     const order = {
-      user: {
-        ...input,
-        chatId: "USER_CHAT_ID", // Здесь добавьте ваш chatId пользователя, полученный через Telegram API
-      },
+      user: input,
       cart,
       timestamp: Date.now(),
       totalPrice: price,
@@ -430,20 +451,17 @@ const CartPage: React.FC = () => {
       totalQuantity: quantity,
     };
 
-    // Логируем заказ
-    console.log("Order details for submission:", order);
-
-    // Отправляем заказ в Telegram
-    await sendOrderToTelegram(order);
-
-    // Создаем заказ в Redux store
     await dispatch(createOrder(order));
 
-    // Обработка успешного завершения
     if (!error.isError && !isLoading) {
+      // Если есть telegramUserId, отправляем уведомление
+      if (telegramUserId) {
+        await sendOrderToTelegram(telegramUserId.toString(), order);
+      }
+
       dispatch(clearCart());
       dispatch(setToLocalStorage("cart"));
-      setShowSuccess(true); // Показываем модалку
+      setShowSuccess(true);
     }
   }
 
@@ -458,9 +476,9 @@ const CartPage: React.FC = () => {
               <div className={classes["no-products-placeholder"]}>
                 <Placeholder text={NO_PRODUCTS_IN_CART} />
                 <img
-                  src="/utca/utcakarzina.webp" // Указываем путь к файлу в папке public
+                  src="/utca/utcakarzina.webp"
                   alt="Утка"
-                  className={classes.duckImage} // Применяем стили
+                  className={classes.duckImage}
                 />
               </div>
             )}
