@@ -397,6 +397,8 @@ const CartPage: React.FC = () => {
   // Функция отправки данных о заказе в Telegram
   async function sendOrderToTelegram(orderDetails: any) {
     try {
+      console.log("Sending order details to Telegram:", orderDetails); // Логируем данные заказа
+
       const response = await fetch("/api/send-telegram", {
         method: "POST",
         headers: {
@@ -406,6 +408,8 @@ const CartPage: React.FC = () => {
       });
 
       const data = await response.json();
+      console.log("Telegram API response:", data); // Логируем ответ API
+
       if (!data.message) {
         throw new Error("Ошибка при отправке сообщения");
       }
@@ -426,12 +430,16 @@ const CartPage: React.FC = () => {
       totalQuantity: quantity,
     };
 
+    // Логируем заказ
+    console.log("Order details for submission:", order);
+
     // Отправляем заказ в Telegram
     await sendOrderToTelegram(order);
 
     // Создаем заказ в Redux store
     await dispatch(createOrder(order));
 
+    // Обработка успешного завершения
     if (!error.isError && !isLoading) {
       dispatch(clearCart());
       dispatch(setToLocalStorage("cart"));
