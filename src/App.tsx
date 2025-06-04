@@ -117,6 +117,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
 import { fetchProducts } from "./store/ProductSlice";
 import { getFromLocalStorage } from "./store/UserSlice";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Showcase pages
 import ShowcasePage from "./components/pages/showcasePages/ShowcasePage/ShowcasePage";
@@ -138,14 +139,13 @@ import SettingsPage from "./components/pages/adminPages/SettingsPage/SettingsPag
 import AdminPasswordPage from "./components/pages/adminPages/AdminPage/AdminPasswordPage";
 
 import Loader from "./components/UI/Loader/Loader";
-
+<SpeedInsights />;
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, products } = useSelector(
     (state: RootState) => state.product
   );
   const isDataLoaded = !isLoading && products.length > 0;
-
   const routes = useRoutes([
     {
       path: PATHS.showcase,
@@ -212,6 +212,7 @@ const App = () => {
         },
       ],
     },
+
     {
       path: "*",
       element: <NotFound />,

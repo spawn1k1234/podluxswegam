@@ -379,14 +379,11 @@ const CartPage: React.FC = () => {
 
   const summaryProps = { price, weight, profit, quantity };
 
-  const handleWishlist = ({
-    id,
-    isWished,
-  }: {
+  const handleWishlist = (params: {
     id: CartItem["productId"];
     isWished: boolean;
   }) => {
-    dispatch(wishListHandler({ id, isWished }));
+    dispatch(wishListHandler(params));
   };
 
   const handleRemoveCartItem = (id: CartItem["productId"]) => {
@@ -421,7 +418,10 @@ const CartPage: React.FC = () => {
   // Основная функция обработки заказа
   async function handleSubmit() {
     const order = {
-      user: input,
+      user: {
+        ...input,
+        chatId: "USER_CHAT_ID", // Здесь добавьте ваш chatId пользователя, полученный через Telegram API
+      },
       cart,
       timestamp: Date.now(),
       totalPrice: price,

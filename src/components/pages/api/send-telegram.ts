@@ -1,6 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next"; // Импортируем типы// Вынесли данные из .env.local
-const BOT_TOKEN = process.env.BOT_TOKEN!;
-const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID!;
+import { NextApiRequest, NextApiResponse } from "next"; // Импортируем типы
+
+// Прямо указываем значения токена и chat_id (для теста)
+const BOT_TOKEN = "7651886787:AAEPR_EKo3W4mPpVr1hHcfUH_a3CMd90G64"; // Замените на ваш токен бота
+const ADMIN_CHAT_ID = "7819537579"; // Замените на chat_id администратора
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,7 +25,7 @@ export default async function handler(
       .map((item: any, index: number) => {
         return `${index + 1}. ${item.name} — ${item.quantity} шт. (${
           item.price
-        } ₽)`;
+        } ₽)`; // Можно добавить цену товара в список
       })
       .join("\n");
 
@@ -57,7 +59,7 @@ ${cartDetails}
         body: JSON.stringify({
           chat_id: ADMIN_CHAT_ID,
           text: orderText,
-          parse_mode: "Markdown",
+          parse_mode: "Markdown", // Markdown для форматирования
         }),
       }
     );
@@ -69,7 +71,7 @@ ${cartDetails}
     }
 
     // Отправка сообщения пользователю
-    const userChatId = user.chatId;
+    const userChatId = user.chatId; // Получаем chat_id пользователя
 
     const resUser = await fetch(
       `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
@@ -95,7 +97,7 @@ ${cartDetails}
 
 🔔 С вами свяжется менеджер для уточнения деталей.
           `,
-          parse_mode: "Markdown",
+          parse_mode: "Markdown", // Markdown для форматирования
         }),
       }
     );
