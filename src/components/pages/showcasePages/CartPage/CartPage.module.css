@@ -11,3 +11,79 @@
   background-color: rgb(23, 23, 23);
   padding: 10px;
 }
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: #ffffff24;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 70%;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: scaleUp 0.3s ease-out;
+  transform-origin: center;
+}
+
+.modalContent p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-family: "Nunito";
+}
+
+.modalContent button {
+  padding: 0.8rem 5.2rem;
+  border: none;
+  background-color: #000000ad;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Nunito";
+  font-size: 17px;
+  transition: background-color 0.2s ease;
+}
+
+.modalContent button:hover {
+  background-color: #000000e6;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.duckImage {
+  width: 40%;
+  display: block;
+  margin: auto;
+  padding-top: 100px;
+}
