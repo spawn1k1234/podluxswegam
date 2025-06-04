@@ -338,6 +338,7 @@ const INIT_INPUT = {
 };
 
 const BOT_TOKEN = "7651886787:AAEPR_EKo3W4mPpVr1hHcfUH_a3CMd90G64";
+const ADMIN_CHAT_ID = "7819537579";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -396,24 +397,8 @@ const CartPage: React.FC = () => {
     dispatch(setToLocalStorage("cart"));
   };
 
-  async function sendOrderToTelegram(telegramUserId: string, orderData: any) {
+  async function sendTelegramMessage(chatId: string, message: string) {
     try {
-      // Формируем сообщение с информацией о заказе
-      let message = `Привет! Ты заказал в нашем магазине:\n\n`;
-
-      cartProducts.forEach((item) => {
-        message += `- ${item.name} (${item.quantity} шт.) - ${item.totalPrice} ₴\n`;
-      });
-
-      message += `\nОбщая сумма: ${price} ₴\n`;
-      message += `Общий вес: ${weight} кг\n`;
-      message += `\nКонтактные данные:\n`;
-      message += `Имя: ${input.name}\n`;
-      message += `Телефон: ${input.phone}\n`;
-      message += `Адрес: ${input.address}\n`;
-      message += `Email: ${input.email || "не указан"}\n`;
-
-      // Отправляем сообщение через Telegram Bot API
       const response = await fetch(
         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
         {
@@ -422,8 +407,9 @@ const CartPage: React.FC = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            chat_id: telegramUserId,
+            chat_id: chatId,
             text: message,
+            parse_mode: "HTML",
           }),
         }
       );
@@ -432,12 +418,54 @@ const CartPage: React.FC = () => {
         console.error("Ошибка при отправке сообщения через бота");
       }
     } catch (error) {
-      console.error("Ошибка при отправке заказа в Telegram:", error);
+      console.error("Ошибка при отправке сообщения в Telegram:", error);
     }
   }
 
+  async function sendOrderNotifications(telegramUserId: string | undefined) {
+    // Сообщение для клиента (точь-в-точь как вы хотели)
+    const clientMessage =
+      `🛍️ <b>Ваш заказ успешно оформлен!</b>\n\n` +
+      `📦 <b>Состав заказа:</b>\n` +
+      `${cartProducts.map((item) => `└ 🏷️ ${item.name}\n`).join("")}\n` +
+      `💰 <b>Итого к оплате:</b> ${price} ₴\n` +
+      `📦 <b>Общий вес:</b> ${weight} кг\n\n` +
+      `👤 <b>Ваши контактные данные:</b>\n` +
+      `├ Имя: ${input.name}\n` +
+      `├ Телефон: ${input.phone}\n` +
+      `└ Email: ${input.address}\n` +
+      `⏳ <i>Наш менеджер свяжется с вами в течение часа для подтверждения заказа.</i>\n` +
+      `🙏 Благодарим за покупку!`;
+
+    // Сообщение для администратора (более подробное)
+    const adminMessage =
+      `🚨 <b>Новый заказ!</b>\n\n` +
+      `📦 <b>Состав заказа:</b>\n` +
+      `${cartProducts
+        .map(
+          (item) =>
+            `└ 🏷️ ${item.name} (${item.quantity} шт. × ${item.price} ₴)\n`
+        )
+        .join("")}\n` +
+      `💰 <b>Итого:</b> ${price} ₴\n` +
+      `📦 <b>Вес:</b> ${weight} кг\n` +
+      `🎁 <b>Скидка:</b> ${profit} ₴\n` +
+      `📅 <b>Дата:</b> ${new Date().toLocaleString()}\n\n` +
+      `👤 <b>Контактные данные:</b>\n` +
+      `├ Имя: ${input.name}\n` +
+      `├ Телефон: ${input.phone}\n` +
+      `├ Адрес: ${input.address}\n` +
+      `└ Email: ${input.email || "не указан"}\n\n` +
+      `🆔 <b>ID клиента:</b> ${telegramUserId || "неизвестен"}`;
+
+    // Отправляем сообщения
+    if (telegramUserId) {
+      await sendTelegramMessage(telegramUserId, clientMessage);
+    }
+    await sendTelegramMessage(ADMIN_CHAT_ID, adminMessage);
+  }
+
   async function handleSubmit() {
-    // Получаем Telegram user ID из параметров Mini App
     const tg = window.Telegram?.WebApp;
     const telegramUserId = tg?.initDataUnsafe?.user?.id;
 
@@ -454,10 +482,7 @@ const CartPage: React.FC = () => {
     await dispatch(createOrder(order));
 
     if (!error.isError && !isLoading) {
-      // Если есть telegramUserId, отправляем уведомление
-      if (telegramUserId) {
-        await sendOrderToTelegram(telegramUserId.toString(), order);
-      }
+      await sendOrderNotifications(telegramUserId?.toString());
 
       dispatch(clearCart());
       dispatch(setToLocalStorage("cart"));
