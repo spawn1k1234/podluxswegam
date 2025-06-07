@@ -309,16 +309,16 @@ const ProductPage: React.FC<IProductPageProps> = () => {
                   {discount ? (
                     <span className={`${classes.price}`}>
                       <span className={classes.price}>
-                        {discount.discountedPrice} ₽
+                        {discount.discountedPrice} ¥
                       </span>
-                      <span className={classes["old-price"]}>{price} ₽</span>
+                      <span className={classes["old-price"]}>{price} ¥</span>
                       <Chip
                         text={"-" + discount.percent + "%"}
                         mode={"attention"}
                       />
                     </span>
                   ) : (
-                    <span className={classes.price}>{price} ₽</span>
+                    <span className={classes.price}>{price} ¥</span>
                   )}
 
                   <IconButton

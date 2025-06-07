@@ -338,7 +338,7 @@ const ProductsList: React.FC<IProductsListProps> = ({
                     </td>
                     <td className={classes.cell}>{category.name}</td>
                     <td className={classes.cell}>{brand.name}</td>
-                    <td className={classes.cell}>{price} ₽</td>
+                    <td className={classes.cell}>{price} ¥</td>
                     <td className={classes["action-cell"]}>
                       <div className={classes.action}>
                         {LOCKED_PRODUCTS.includes(id) ? (

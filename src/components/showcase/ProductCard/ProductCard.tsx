@@ -146,11 +146,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
       {discount ? (
         <span className={`${classes.price}`}>
-          <span className={classes.price}>{discount.discountedPrice} ₽</span>
-          <span className={classes["old-price"]}>{price} ₽</span>
+          <span className={classes.price}>{discount.discountedPrice} ¥</span>
+          <span className={classes["old-price"]}>{price} ¥</span>
         </span>
       ) : (
-        <span className={classes.price}>{price} ₽</span>
+        <span className={classes.price}>{price} ¥</span>
       )}
 
       <span

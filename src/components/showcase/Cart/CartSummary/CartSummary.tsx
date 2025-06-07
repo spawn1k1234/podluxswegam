@@ -18,7 +18,7 @@ const CartSummary: React.FC<ICartSummaryProps> = ({
     <div className={classes["cart-summary"]}>
       <div className={`${classes["cart-summary-row"]} ${classes.heading}`}>
         <span>Итого</span>
-        <span>{price} ₽</span>
+        <span>{price} ¥</span>
       </div>
 
       {/* <div className={classes['cart-summary-row']}>

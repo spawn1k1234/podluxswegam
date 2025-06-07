@@ -193,11 +193,11 @@ const CartItem: React.FC<ICartItemProps> = ({
               discount && classes["discount-price"]
             }`}
           >
-            {totalPrice} ₽
+            {totalPrice} ¥
           </span>
           {discount && (
             <span className={classes["price-without-discount"]}>
-              {totalPriceWithoutDiscount} ₽
+              {totalPriceWithoutDiscount} ¥
             </span>
           )}
         </div>

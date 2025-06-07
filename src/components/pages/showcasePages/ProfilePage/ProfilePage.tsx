@@ -280,8 +280,15 @@ const PrivatePage = () => {
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
-    if (tg && tg.initDataUnsafe?.user) {
-      setUser(tg.initDataUnsafe.user);
+    const tgUser = tg?.initDataUnsafe?.user;
+
+    if (tgUser && typeof tgUser.id === "number") {
+      const safeUser: User = {
+        id: tgUser.id,
+        username: tgUser.username,
+        first_name: tgUser.first_name,
+      };
+      setUser(safeUser);
     }
   }, []);
 
