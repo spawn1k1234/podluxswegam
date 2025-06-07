@@ -137,12 +137,12 @@
   border-radius: 0;
   padding-bottom: 0;
   background-color: #000;
-  border: 1px solid #2b2b2b;
+  box-shadow: 8px 11px 54px 0px rgba(0, 0, 0, 1);
   overflow: hidden;
   animation: fade 400ms linear;
   width: 98%;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
 }
 
 @keyframes fade {
