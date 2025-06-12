@@ -142,8 +142,6 @@ import SettingsPage from "./components/pages/adminPages/SettingsPage/SettingsPag
 import AdminPasswordPage from "./components/pages/adminPages/AdminPage/AdminPasswordPage";
 
 import Loader from "./components/UI/Loader/Loader";
-<SpeedInsights />;
-<Analytics />;
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, products } = useSelector(
@@ -243,7 +241,13 @@ const App = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  return <div className={classes.app}>{routes}</div>;
+  return (
+    <div className={classes.app}>
+      {routes}
+      <Analytics />
+      <SpeedInsights />
+    </div>
+  );
 };
 
 export default App;
