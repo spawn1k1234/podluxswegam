@@ -118,6 +118,9 @@ import { AppDispatch, RootState } from "./store/store";
 import { fetchProducts } from "./store/ProductSlice";
 import { getFromLocalStorage } from "./store/UserSlice";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 // Showcase pages
 import ShowcasePage from "./components/pages/showcasePages/ShowcasePage/ShowcasePage";
@@ -140,6 +143,7 @@ import AdminPasswordPage from "./components/pages/adminPages/AdminPage/AdminPass
 
 import Loader from "./components/UI/Loader/Loader";
 <SpeedInsights />;
+<Analytics />;
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, products } = useSelector(
@@ -192,7 +196,7 @@ const App = () => {
     },
     {
       path: `${PATHS.admin}/auth`,
-      element: <AdminPasswordPage />, ///admin/orders
+      element: <AdminPasswordPage />, ///admin/orders - imgur.com
     },
     {
       path: PATHS.admin,
@@ -218,7 +222,21 @@ const App = () => {
       element: <NotFound />,
     },
   ]);
+  const firebaseConfig = {
+    apiKey: "AIzaSyCSnUlsCQIXk0XiLmua1dNiVj-Vag3hxc0",
+    authDomain: "baza-ee8e7.firebaseapp.com",
+    databaseURL:
+      "https://baza-ee8e7-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "baza-ee8e7",
+    storageBucket: "baza-ee8e7.firebasestorage.app",
+    messagingSenderId: "656749534532",
+    appId: "1:656749534532:web:c24eb1712b7b2944614b11",
+    measurementId: "G-HMTKWG50QW",
+  };
 
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
   useEffect(() => {
     dispatch(getFromLocalStorage("wishlist"));
     dispatch(getFromLocalStorage("cart"));
